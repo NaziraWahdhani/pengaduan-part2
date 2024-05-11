@@ -9,29 +9,25 @@ use App\Models\User;
 
 class LoginController extends Controller
 {
-    public function login()
+    public function login() : View
     {
-        $data = User::get();
-
-        return view('login',compact('data'));
+        return \view('login');
     }
 
-    // public function login_proses(Request $request)
-    // {
-    //     $request->validate([
-    //        'email'     => 'required',
-    //         'password' => 'required'
-    //     ]);
+    public function login_proses(Request $request)
+    {
+        $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
 
-    //     $data = [
-    //         'email'    => $request->email,
-    //         'password' => $request->password
-    //     ];
+        if (Auth::attempt($request)) {
+            $request->session()->regenerate();
 
-    //     if(Auth::attempt($data)) {
-    //         return redirect()->route('index');
-    //     } else {
-    //         return redirect()->route('login')->with('failed', 'Email atau password salah');
-    //     }
-    // }
+            return redirect()->intended('dashboard');
+        }
+
+        return redirect()->route('login')->with('success', 'Berhasil');
+    }
+
 }
