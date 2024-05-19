@@ -83,7 +83,7 @@
     </table>
 
     <div class="font-medium text-white flex pt-4 justify-start">
-      <button class="bg-[#4ACAA4] rounded-md mx-1 w-24 h-10"><a href="tolak.blade.php">Back</a></button>
+      <button class="bg-[#4ACAA4] rounded-md mx-1 w-24 h-10"><a href="{{ route('index') }}">Back</a></button>
     </div>
 
   </div>

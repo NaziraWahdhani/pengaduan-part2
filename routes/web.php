@@ -13,7 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\LoginController::class, 'login'])->name('login');
-Route::post('/login_proses', [\App\Http\Controllers\LoginController::class, 'login_proses'])->name('login-proses');
+Route::get('/', [\App\Http\Controllers\LoginController::class, 'login'])->name('login')->middleware('guest');
+Route::post('/login_proses', [\App\Http\Controllers\LoginController::class, 'login_proses'])->name('login_proses');
+Route::post('/logout', [\App\Http\Controllers\LoginController::class, 'logout'])->name('logout');
 
-Route::get('/index', [\App\Http\Controllers\HomeController::class, 'index'])->name('index');
+Route::get('/index', [\App\Http\Controllers\HomeController::class, 'index'])->name('index')->middleware('auth');
+Route::get('/all', [\App\Http\Controllers\HomeController::class, 'all'])->name('all');
+Route::post('/laporan', [\App\Http\Controllers\PostController::class, 'laporan'])->name('laporan');
+Route::get('/selesai', [\App\Http\Controllers\HomeController::class, 'selesai'])->name('selesai');
+Route::get('/tolak', [\App\Http\Controllers\HomeController::class, 'tolak'])->name('tolak');

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
-use App\Models\User;
+use Session;
 
 class LoginController extends Controller
 {
@@ -16,18 +16,27 @@ class LoginController extends Controller
 
     public function login_proses(Request $request)
     {
-        $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+        $data = [
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+        ];
 
-        if (Auth::attempt($request)) {
-            $request->session()->regenerate();
-
-            return redirect()->intended('dashboard');
+        if (Auth::Attempt($data)) {
+            return redirect('index');
+        }else{
+            Session::flash('error', 'Email atau Password Salah');
+            return redirect('/');
         }
+    }
 
-        return redirect()->route('login')->with('success', 'Berhasil');
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 
 }

@@ -12,4 +12,19 @@ class HomeController extends Controller
     {
         return view('index');
     }
+
+    public function all() : View
+    {
+        return view('all');
+    }
+
+    public function selesai() : View
+    {
+        return view('selesai');
+    }
+
+    public function tolak() : View
+    {
+        return view('tolak');
+    }
 }
