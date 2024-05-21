@@ -20,9 +20,10 @@
 <body>
 <div class="text-1xl text-left m-5 p-2 font-bold text-[#39A07B]">
     <ul class="hover:text-gray-500">
-        <li><a href="home.html">Kembali</a></li>
+        <li><a href="{{ route('home') }}">Kembali</a></li>
     </ul>
 </div>
+<form action="{{ route('login_user') }}" method="post">
 <div class="text-center font-bold text-[#313131] m-12 text-2xl">
     <h1>Masuk</h1>
 </div>
@@ -32,8 +33,9 @@
 <div class="mt-3 text-center">
     <input type="password" class="border-[#292C44] ml-4 mr-4 border w-3/5 text-base px-2 py-1 focus:outline-none focus:ring-2 focus:border-gray-600 rounded-lg mb-16" placeholder="Masukkan Kata Sandi...">
 </div>
+</form>
 <div class="mt-3 text-center">
-    <a href="page1.html" class="bg-[#4ACAA4] hover:bg-[#39A07B] text-white font-semibold py-2 px-4 rounded-full">Masuk</a>
+    <a href="{{ route('page1') }}" type="submit" class="bg-[#4ACAA4] hover:bg-[#39A07B] text-white font-semibold py-2 px-4 rounded-full">Masuk</a>
 </div>
 </body>
 </html>

@@ -56,26 +56,35 @@
         <tr class="bg-[#4ACAA4] text-white">
             <th class="p-2">NO</th>
             <th class="p-2">NAMA</th>
-            <th class="p-2"> LAPORAN</th>
+            <th class="p-2">ALAMAT</th>
+            <th class="p-2">KATEGORI</th>
             <th class="p-2">FOTO</th>
             <th class="p-2">TANGGAL KEJADIAN</th>
+            <th class="p-2">ISI LAPORAN</th>
             <th class="p-2">ACTION</th>
         </tr>
         </thead>
         <tbody>
-        <!-- Sample row, you can add more rows dynamically -->
-        <form action="{{ route('laporan') }}" method="post">
-        <tr class="bg-gray-100 text-center">
-            <td class="p-2">1</td>
-            <td class="p-2">WWW</td>
-            <td class="p-2">Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
-            <td class="p-2"><img src="{{ asset('assets/img/login.png') }}" alt=""></td>
-            <td class="p-2">2024-01-07</td>
-            <td class="p-2">
-                <button class="bg-[#4ACAA4] text-white p-2 rounded-lg"><a href="lengkap.blade.php">Lihat Lengkap</a></button>
-            </td>
-        </tr>
-        </form>
+        @foreach($laporans as $laporan)
+            <tr class="bg-gray-100 text-center">
+                <td class="p-2">{{ $loop->iteration }}</td>
+                <td class="p-2">{{ $laporan->nama }}</td>
+                <th class="p-2">{{ $laporan->alamat }}</th>
+                <td class="p-2">{{ $laporan->kategori }}</td>
+                <td class="p-2">
+                    @if($laporan->foto)
+                        <img src="{{ asset($laporan->foto) }}" alt=""></td>
+                    @else
+                        Tidak ada foto
+                   @endif
+                <td class="p-2">{{ $laporan->tanggal_kejadian }}</td>
+                <th class="p-2">{{ $laporan->laporan }}</th>
+                <td class="p-2">
+                    <button class="bg-[#4ACAA4] text-white p-2 rounded-lg"><a href="lengkap.blade.php">Lihat Lengkap</a>
+                    </button>
+                </td>
+            </tr>
+        @endforeach
         </tbody>
     </table>
     <div class="font-medium text-white flex pt-4 justify-start">

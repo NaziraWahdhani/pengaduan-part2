@@ -20,7 +20,7 @@
 <body>
     <div class="text-1xl text-right m-5 p-2 font-bold text-[#39A07B]">
         <ul class="hover:text-gray-500">
-          <li><a href="home.html">Keluar</a></li>
+          <li><a href="{{ route('home') }}">Keluar</a></li>
         </ul>
       </div>
       <br><br>
@@ -29,17 +29,17 @@
           Ada <span class="text-[#4ACAA4]">Masalah</span> yang Perlu Kami Bantu?
         </h1>
       </div>
-      
+
       <div class="text-2xl font-semibold text-[#313131] m-6 p-4 mt-[-40px]">
         Segera Tulis Laporan Anda!, Kami akan<br>
         Melakukan Tindak Lanjut dengan Cepat.<br>
         Suara Anda adalah Perubahan!.
         </div>
         <div class="w-full xl:w-1/2 xl: absolute bottom-28 right-4 md:w-96 lg:w-96">
-          <img src="page.png" alt="">
+          <img src="{{ asset('assets/img/page.png') }}" alt="">
         </div>
         <button class="mt-3 text-left m-10 mb-5 p-1 ">
-            <a href="ajukan.html" class="bg-[#4ACAA4] hover:bg-[#39A07B] text-white font-semibold py-2 px-4 rounded-full mr-5">Ajukan Pengaduan</a>
+            <a href="{{ route('ajukan') }}" class="bg-[#4ACAA4] hover:bg-[#39A07B] text-white font-semibold py-2 px-4 rounded-full mr-5">Ajukan Pengaduan</a>
             <a href="tanggapan.html" class="bg-[#4ACAA4] hover:bg-[#39A07B] text-white font-semibold py-2 px-4 rounded-full">Lihat Tanggapan</a>
         </button>
         <br><br><br><br><br><br><br><br>
