@@ -37,23 +37,7 @@
 </head>
 
 <body class="dark:bg-slate-800 dark:text-slate-200">
-<nav>
-    <ul class="bg-[#4ACAA4] py-4 flex justify-between items-center">
-        <h1 class="text-2xl font-bold ml-8 text-white">Pengaduan Masyarakat Boyolangu</h1>
-        <div class="flex items-center space-x-4 mr-8 text-white font-semibold">
-            <li><a href="{{ route('index') }}">Home</a></li>
-            <li>
-                <form action="{{ route('logout') }}" method="post">
-                    @csrf
-                    <button type="submit" class="dropdown-item">Log out</button>
-                </form>
-            </li>
-            <li><a href="admin.blade.php">Admin</a></li>
-            <img src="{{ asset('assets/img/profile.svg') }}">
-        </div>
-    </ul>
-</nav>
-<h1 class="font-bold ml-8 text-2xl p-6 text-center">SEMUA PENGADUAN MASUK</h1>
+<h1 class="font-bold ml-8 text-2xl p-6 text-center">Semua Tanggapan</h1>
 <div class="container mx-auto p-6">
     <table class="w-full table-fixed">
         <thead>
@@ -65,11 +49,12 @@
             <th class="p-2">FOTO</th>
             <th class="p-2">TANGGAL KEJADIAN</th>
             <th class="p-2">ISI LAPORAN</th>
+            <th class="p-2">TANGGAPAN</th>
             <th class="p-2">ACTION</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($laporans as $laporan)
+        @foreach($userTanggapans as $laporan)
             <tr>
                 <td class="p-2">{{ $loop->iteration }}</td>
                 <td class="p-2">{{ $laporan->nama }}</td>
@@ -84,10 +69,15 @@
                 </td>
                 <td class="p-2">{{ $laporan->tanggal_kejadian }}</td>
                 <td class="p-2">{{ $laporan->laporan }}</td>
+                @if ($laporan->tanggapans->isNotEmpty())
+                    <td>{{ $laporan->tanggapans->first()->tanggapan }}</td>
+                @else
+                    <td>No Tanggapan</td>
+                @endif
                 <td class="p-2">
                     @if ($laporan->status === 'pending')
-                        <a href="{{ route('laporan.show', $laporan->id) }}" class="bg-[#4ACAA4] text-white px-2 py-1 rounded-md flex items-center justify-center">
-                            Lihat Lengkap
+                        <a class="bg-[#4ACAA4] text-white px-2 py-1 rounded-md flex items-center justify-center">
+                            Belum Ditanggapi
                         </a>
                     @endif
 
@@ -118,7 +108,7 @@
     </table>
     <div class="font-medium text-white flex pt-4 justify-start">
         <button class="bg-[#4ACAA4] rounded-md mx-1 w-24 h-10">
-            <a href="{{ route('index') }}">Back</a>
+            <a href="{{ route('page1') }}">Back</a>
         </button>
     </div>
 </div>

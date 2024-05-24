@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('kategori');
             $table->string('foto')->nullable();
             $table->text('laporan');
+            $table->enum('status', ['pending', 'reject', 'approve'])->default('pending'); // Add status column with default 'pending'
             $table->timestamps();
         });
     }

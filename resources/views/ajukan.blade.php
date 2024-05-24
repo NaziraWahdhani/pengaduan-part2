@@ -22,7 +22,7 @@
     <h1>Forum</h1>
 </div>
 <div class="ml-56 -mr-56 mb-8" style="background-image: url('{{ asset('assets/img/grup2.svg') }}'); width: 773px; height: 268px; display: flex;"></div>
-<form action="{{ route('proses_pengaduan') }}" method="post">
+<form action="{{ route('proses_pengaduan') }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="mt-3 text-center">
         <input type="text" id="nama" name="nama" class="border-[#292C44] ml-4 mr-4 border w-3/5 text-base px-2 py-1 focus:outline-none focus:ring-2 focus:border-gray-600 rounded-lg mb-5" placeholder="Nama">

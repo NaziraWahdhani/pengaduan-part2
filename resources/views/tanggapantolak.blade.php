@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset(asset('assets/css/style.css')) }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,9 +32,9 @@
             }
         }
 
-        .gambar {
-            margin-right: 20px;
-            /* Jarak antara gambar dan teks */
+        textarea {
+            width: 100%;
+            resize: vertical;
         }
     </style>
 </head>
@@ -48,26 +48,22 @@
             <li><a href="admin.blade.php">Admin</a></li>
             <img src="{{ asset('assets/img/profile.svg') }}">
         </div>
-        </div>
     </ul>
 </nav>
 
-<h1 class="font-bold ml-8 text-2xl p-6 text-center">LAPORAN LENGKAP</h1>
+<h1 class="font-bold ml-8 text-2xl p-6 text-center">BERI TANGGAPAN</h1>
 
-<div class="container mx-auto">
-    <div class="border rounded-lg shadow-xl p-10">
-        <div class="gambar">
-            <!-- Tampilkan gambar jika ada -->
-            @if($laporan->foto)
-                <img src="{{ asset('foto/' . $laporan->foto) }}" alt="foto" width="200">
-                <!-- Tampilkan isi laporan -->
-                <p>{{ $laporan->laporan }}</p>
-            @endif
+<form action="{{ route('tanggapan.storeTolak') }}" method="post">
+    @csrf
+
+    <input type="hidden" name="laporan_id" value="{{ $laporan->id }}">
+    <div class="container mx-auto">
+        <div class="border rounded-lg shadow-xl p-10 text-center">
+            <textarea type="text" name="tanggapan" placeholder="Tulis tanggapan..."></textarea>
+            <div class="font-light text-white flex pt-4 justify-end">
+                <button type="button" class="bg-red-500 rounded-md mx-1 w-24 h-10">Back</button>
+                <button type="submit" class="bg-[#4ACAA4] rounded-md mx-1 w-24 h-10">Send</button>
+            </div>
         </div>
     </div>
-</div>
-<div class="font-medium text-white flex pt-4 justify-center">
-    <button class="bg-[#4ACAA4] rounded-md mx-1 w-24 h-10"><a href="{{ route('laporan.tanggapan', $laporan->id) }}">Approve</a></button>
-    <button class="bg-red-500 rounded-md mx-1 w-28 h-10"><a href="{{ route('laporan.tanggapantolak', $laporan->id) }}">Unapproved</a></button>
-    <button class="bg-[#4ACAA4] rounded-md mx-1 w-24 h-10"><a href="{{ route('all') }}">Back</a></button>
-</div>
+</form>

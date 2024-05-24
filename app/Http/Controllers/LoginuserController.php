@@ -28,7 +28,7 @@ class LoginuserController extends Controller
         if (Auth::Attempt($data)) {
             return redirect('page1');
         }else{
-            Session::flash('error', 'Email atau Password Salah');
+            Session::flash('error', 'Nik atau Password Salah');
             return redirect('/loginuser');
         }
     }

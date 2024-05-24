@@ -85,34 +85,32 @@
 </div>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
 <script>
-    // setup
+    const kategoriData = {!! json_encode($kategoriData) !!};
+    const chartData = {!! json_encode($chartData) !!};
+
+    // Setup data for the chart
     const data = {
-        labels: ['Kerusakan lingkungan', 'Bantuan Sosial', 'Gangguan Lingkungan'],
+        labels: ['Gangguan Lingkungan', 'Bantuan Sosial', 'Kerusakan Lingkungan'],
         datasets: [{
             label: 'Rekap Laporan',
-            data: [18, 12, 9],
+            data: chartData,
             backgroundColor: [
                 'rgba(255, 26, 104, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(0, 0, 0, 0.2)'
+                // Add more colors if needed
             ],
             borderColor: [
                 'rgba(255, 26, 104, 1)',
                 'rgba(54, 162, 235, 1)',
                 'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(0, 0, 0, 1)'
+                // Add more colors if needed
             ],
             borderWidth: 1
         }]
     };
-    // config
+
+    // Configurations for the chart
     const config = {
         type: 'bar',
         data,
@@ -125,11 +123,13 @@
             }
         }
     };
-    // render init block
+
+    // Render the chart
     const myChart = new Chart(
         document.getElementById('myChart'),
         config
     );
+
     // Instantly assign Chart.js version
     const chartVersion = document.getElementById('chartVersion');
     chartVersion.innerText = Chart.version;
